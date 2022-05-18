@@ -15,6 +15,10 @@
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.8.2.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+    <jkube.build.strategy>jib</jkube.build.strategy>
+    <jkube.generator.name>quay.io/thomas_berthomier/code-with-quarkus</jkube.generator.name>
+    <quay.username>thomas_berthomier</quay.username>
+    <quay.password>FS1tzmOYbjA6zIH8ed+8iSEtwJAFB097B2Vk9KEjBam/rBFHHFyQeoGSbxLh2lVz</quay.password>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -106,6 +110,18 @@
             <maven.home>${maven.home}</maven.home>
           </systemPropertyVariables>
         </configuration>
+      </plugin>
+       <plugin>
+        <groupId>org.eclipse.jkube</groupId>
+        <artifactId>openshift-maven-plugin</artifactId>
+        <version>1.7.0</version>
+          <configuration>
+    <image>consol/tomcat-7.0</image>
+    <authConfig>
+      <username>${quay.username}</username>
+      <password>${quay.password}</password>
+    </authConfig>
+  </configuration>
       </plugin>
     </plugins>
   </build>
